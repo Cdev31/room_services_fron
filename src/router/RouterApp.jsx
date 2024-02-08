@@ -6,7 +6,7 @@ import { CommonRouter } from "../common"
 export const RouterApp = ()=>{
     return (
         <Routes>
-            <Route path="/" element={<CommonRouter/>}/>
+            <Route path="/*" element={<CommonRouter/>}/>
         </Routes>
     )
 }

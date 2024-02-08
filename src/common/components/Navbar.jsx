@@ -8,13 +8,13 @@ export const NavBar = ()=>{
             <ul className="pt-2 flex gap-1 bg-room-theme pb-1">
                <NavLink to='/' className="basis-[70%] text-white font-black text-3xl">Room App</NavLink>
                <div className="flex gap-1">
-                   <li className="font-medium text-white bg-room-theme m-1 p-1 rounded-md  border-white border-2 text-xl
+                   <li className="cursor-pointer font-medium text-white bg-room-theme m-1 p-1 rounded-md  border-white border-2 text-xl
                    hover:scale-[1.02] hover:text-white hover:bg-orange-400">
                         <NavLink to='/login'>
                             Login
                         </NavLink>
                     </li>
-                    <li className="font-medium text-white bg-room-theme m-1 p-1 rounded-md border-white border-2 text-xl
+                    <li className="cursor-pointer font-medium text-white bg-room-theme m-1 p-1 rounded-md border-white border-2 text-xl
                    hover:scale-[1.02] hover:text-white hover:bg-orange-400">
                         <NavLink to='/singin'>
                             SignIn
