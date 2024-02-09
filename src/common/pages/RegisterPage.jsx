@@ -1,7 +1,8 @@
-import { NavLink, Link } from "react-router-dom"
+import { NavLink, Link, useNavigate } from "react-router-dom"
+import { ArrowLeftIcon } from "@heroicons/react/24/solid"
 import { useForm } from "../../hooks/useForm"
-import { useRef } from "react"
-import { useDispatch } from "react-redux"
+import { useRef, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 import { registerUser } from "../../store/auth/thunks"
 
@@ -20,12 +21,17 @@ const initialForm = {
 }
 
 const validationForm = {
-    firstName: [( value )=> value?.length > 0]
+    firstName: [( value )=> value?.length > 0, 'Mensaje 1'],
+    lastName: [( value )=> value?.length > 0, 'Mensaje 2']
 }
 
 export const RegisterPage = ()=>{
 
+    const navigate = useNavigate()
+    const [openError, setOpenError ] = useState(false)
+
     const dispatch = useDispatch()
+    const { error, status }  = useSelector( state => state.auth )
 
     const firstNameRef = useRef()
     const lastNameRef = useRef()
@@ -41,17 +47,28 @@ export const RegisterPage = ()=>{
 
     const { firstName, lastName, displayName, gender, dateOfBirth, phone,
             personalPhone, dui, email, password, onInputChange, onNextInput, 
-            disableButton, formState } = useForm( initialForm, validationForm )
+            disableButton, formState, messageError } = useForm( initialForm, validationForm )
 
             
 
     const onRegisterUser = ( user )=>{
         dispatch( registerUser( user ) )
+        setOpenError(true)
     }
 
+    const onChangeHome = ()=>{
+        navigate({
+            pathname: '/'
+        })
+    }
 
     return (
-        <main className="flex justify-center">
+        <main className="flex justify-center gap-3">
+            <div 
+            onClick={onChangeHome}
+            className="flex justify-center border-room-theme pt-1 mt-2 border-2 rounded-full h-10 w-10 hover:scale-[1.02] cursor-pointer">
+                <ArrowLeftIcon className="h-7 text-room-theme"/>
+            </div>
             <div className="flex flex-col gap-2 pt-2">
                 <form className=" flex flex-col max-w-md">
                     <div className="flex gap-2" >
@@ -214,6 +231,13 @@ export const RegisterPage = ()=>{
                             rounded-lg h-12 pl-2 font-bold text-black/50'/>
                     </div>            
                 </form>
+                {
+                    openError !== false && (
+                        <span className="text-sm font-bold text-red-600">
+                            { messageError }
+                        </span>
+                    )
+                }
                 <button
                  ref={buttonRef}
                  disabled={!disableButton}

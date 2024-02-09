@@ -1,4 +1,4 @@
-import { register } from "./authSlice"
+import { login, register } from "./authSlice"
 
 
 const API_URL = 'http://localhost:3000/api/v1/auth'
@@ -33,24 +33,46 @@ export const registerUser = ( user )=>{
 
         const { error , response} = await req.json()
 
-        if ( error === null ) return dispatch( {
+        if ( error === null ) return dispatch( register({
             status: 'no-authenticated',
             error: error,
-         })
+         }) )
 
-        dispatch( {
+        dispatch( register({
             status: 'authenticated',
             error: null,
             userId: response?._id,
-         })
+         }) )
 
      }
     
 }
 
 
-export const loginUser = ()=>{
+export const loginUser = ( user )=>{
     return async ( dispatch )=>{
+        const req = await fetch(`${ API_URL }/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify( user )
+        })
+
+        if ( req.status === 401 ){
+           return dispatch( login( {
+                error: 'User our password invalid'
+            } ) )
+        }
+
+        const res = await req.json()
+
+        dispatch( login({ 
+            token: res.token,
+            error: null,
+            userId: res.userId,
+            status: 'authenticated'
+        }))
 
     }
 }

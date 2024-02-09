@@ -1,9 +1,44 @@
-import { NavLink, Link } from "react-router-dom"
+import { NavLink, Link, useNavigate } from "react-router-dom"
+import { useForm } from "../../hooks/useForm"
+import { useEffect, useRef } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { loginUser } from "../../store/auth/thunks"
 
+const initialForm = {
+    email: '',
+    password: ''
+}
+
+const validationForm = {
+    email: [(value)=> value?.length > 0],
+    password: [(value)=> value?.length > 0]
+}
 
 export const LoginPage = ()=>{
 
-    
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { error, status } = useSelector( state => state.auth )
+   
+    const emailRef = useRef()
+    const passwordRef = useRef()
+    const buttonRef = useRef()
+
+    const { email, password, disableButton, onNextInput, onInputChange , formState } = useForm( initialForm, validationForm )
+
+
+    const onLogin = ( user )=>{
+        dispatch( loginUser( user ) )
+    } 
+
+    useEffect(()=>{
+        if( status === 'authenticated' )
+            setTimeout(()=>{
+                navigate({
+                    pathname: '/'
+                })
+            }, 2000)
+    }, [ status ])
     return (
         <main className="flex justify-center">
             <div className="flex flex-col gap-2 pt-10">
@@ -16,6 +51,11 @@ export const LoginPage = ()=>{
                             Email
                         </label>
                         <input
+                            name="email"
+                            value={email}
+                            ref={emailRef}
+                            onChange={onInputChange}
+                            onKeyUp={(e)=> onNextInput( e, passwordRef )}
                             type="email"
                             placeholder='emai.example@gmail.com' 
                             className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-room-theme
@@ -26,14 +66,32 @@ export const LoginPage = ()=>{
                             Password
                         </label>
                         <input
+                            name="password"
+                            value={password}
+                            ref={passwordRef}
+                            onChange={onInputChange}
+                            onKeyUp={(e)=> onInputChange( e, buttonRef )}
                             type="password"
                             placeholder='**********' 
                             className='focus:outline-orange-300 focus:scale-[1.02] border-2 border-room-theme 
                             rounded-lg h-12 pl-2 font-bold text-black/50'/>
                     </div>            
                 </form>
+                {
+                    error != null && (
+                        <span className="text-sm text-red-600 font-bold">{error}</span>
+                    )
+                    
+                }
                 <button
-                 className="bg-room-theme text-white rounded-lg font-bold h-10 text-xl focus:outline-none">
+                 ref={buttonRef}
+                 disabled={!disableButton}
+                 onClick={()=> onLogin( formState )}
+                 className={`${
+                    disableButton === true 
+                    ? "bg-room-theme"
+                    : "bg-black/40"
+                 } text-white rounded-lg font-bold h-10 text-xl focus:outline-none`}>
                     Login
                 </button>    
                 <section>

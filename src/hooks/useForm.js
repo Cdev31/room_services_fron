@@ -5,13 +5,15 @@ export const useForm = (initialForm = {} , validationForm = {} )=>{
 
     const [ formState, setFormState ] = useState(initialForm)
     const [ disableButton, setDisableButton ] = useState(false)
+    const [ messageError, setMessageError ] = useState('')
 
     useEffect(()=>{
         setFormState(initialForm)
     }, [ initialForm ])
 
     useEffect(()=>{
-        createValidation(setDisableButton, validationForm, formState)
+        const error = createValidation(setDisableButton, validationForm, formState)
+        setMessageError(error)
     }, [ formState ])
     
 
@@ -33,6 +35,7 @@ export const useForm = (initialForm = {} , validationForm = {} )=>{
         ...formState,
         formState,
         onNextInput,
+        messageError,
         disableButton,
         onInputChange, 
         setDisableButton,
