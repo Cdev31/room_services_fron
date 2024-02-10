@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        'room-theme': 'rgb(249 115 22)'
+        'theme': 'rgb(249 115 22)',
+        'room-theme': 'rgb(190 30 30)'
       }
     },
   },

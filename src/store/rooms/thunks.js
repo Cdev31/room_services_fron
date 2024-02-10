@@ -1,19 +1,16 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { loadRooms } from "./roomSlice"
+
+const API_URL = 'http://localhost:3000/api/v1/room'
 
 
-export const roomSlice = createSlice({
-   name: 'room',
+export const getRooms = ()=>{
+   return async ( dispatch )=>{
+      const req = await fetch(API_URL)
+      const res = await req.json()
 
-   initialState: {},
-
-   reducers: {
-      increment: (state) => {
-
-      state.value += 1
-
-   },
-},
-})
-
-
-export const { increment, decrement, incrementByAmount } = roomSlice.actions
+      dispatch(
+          loadRooms({
+            rooms: res.response
+         }))
+   }
+}
