@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect } from "react"
 import { getRooms } from "../../store/rooms/thunks"
 import { Layout } from "../../layout/Layout"
-import { RoomList } from "../../rooms/components/RoomList"
-import { RoomCard } from "../../rooms/components/RoomCard"
+import { RoomList } from "../../rooms/components/Common/RoomList"
+import { RoomCard } from "../../rooms/components/Common/RoomCard"
 
 
 export const HomePage = ()=>{
@@ -14,7 +14,7 @@ export const HomePage = ()=>{
     useEffect(()=>{
         dispatch( getRooms() )
     }, [])
-    console.log(rooms)
+    
     return (
     <Layout>
         <RoomList>
