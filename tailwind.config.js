@@ -8,7 +8,7 @@ export default {
     extend: {
       colors: {
         'theme': 'rgb(249 115 22)',
-        'room-theme': 'rgb(190 30 30)'
+        'room-theme': 'rgb(180 30 30)'
       }
     },
   },
