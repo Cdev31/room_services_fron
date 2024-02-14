@@ -6,6 +6,7 @@ import { useSelector } from "react-redux"
 export const NavBar = ()=>{
 
     const { status }= useSelector( state => state.auth )
+    const { id } = useSelector( state => state.user )
 
     return (
         <nav className="flex flex-col z-10 gap-1 fixed w-full border-b-2 border-room-theme/80">
@@ -41,7 +42,7 @@ export const NavBar = ()=>{
                             </li> */}
                             <li className="cursor-pointer font-medium text-white bg-white p-1 rounded-md text-xl
                                 hover:scale-[1.02]">
-                                    <NavLink className="flex gap-1 w-20 sm:w-auto justify-center" to='/user/profile'>
+                                    <NavLink className="flex gap-1 w-20 sm:w-auto justify-center" to={`/user/profile/${id}`}>
                                         <UserCircleIcon className="h-10 text-room-theme"/>
                                         <p className="self-center hidden sm:block text-room-theme text-sm">kalet.elsalvadorca@gmail.com</p>
                                     </NavLink>

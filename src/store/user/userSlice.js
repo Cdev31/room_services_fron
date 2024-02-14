@@ -24,18 +24,18 @@ export const userSlice = createSlice({
 
    reducers: {
       loadProfile: ( state, { payload } )=>{
-        state.id = payload.id
+        state.id = payload._id
         state.email = payload.email
         state.displayName = payload.displayName
         state.dateOfBirth = payload.dateOfBirth
         state.biografy = payload.biografy
         state.publicNumber = payload.publicNumber
-        state.privateNumber = payload.privateNumber
+        state.privateNumber = payload.privateInformation.privateNumber
         state.userType = payload.userType
         state.gender = payload.gender
         state.photo = state.photo
-        state.address = payload.address
-        state.dui = payload.dui
+        state.address = payload.privateInformation.address
+        state.dui = payload.privateInformation.dui
         state.error = payload.error
       }
 },

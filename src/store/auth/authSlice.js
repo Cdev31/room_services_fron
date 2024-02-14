@@ -16,6 +16,7 @@ export const authSlice = createSlice({
         state.error = payload.error
         state.status = payload.status
         state.token = payload.token
+        state.userId = payload.userId
      },
      register: ( state, { payload } )=>{
         state.error = payload.error

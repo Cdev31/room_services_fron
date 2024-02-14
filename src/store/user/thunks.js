@@ -8,7 +8,7 @@ const API_URL = 'http://localhost:3000/api/v1/user'
 
 export const getProfile = ( token, userId ) => {
     return async ( dispatch )=>{
-        const req = await fetch( `${ API_URL }/profie/${ userId }`, {
+        const req = await fetch( `${ API_URL }/profile/${ userId }`, {
             method: 'GET',
             headers: {
                 authorization: `Bearer ${token}`
@@ -21,7 +21,7 @@ export const getProfile = ( token, userId ) => {
         })
 
         const res = await req.json()
-        
+        console.log({...res.response})
         dispatch( loadProfile({
             ...res.response
         }))

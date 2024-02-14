@@ -8,15 +8,19 @@ export const roomSlice = createSlice({
    name: 'room',
 
    initialState: {
-      rooms: []
+      rooms: [],
+      roomsByHost: []
    },
 
    reducers: {
      loadRooms: ( state, { payload } )=>{
         state.rooms = payload.rooms
-     }
+     },
+     loadRoomsByHost: ( state, { payload } )=>{
+      state.roomsByHost = payload.rooms
+   }
 },
 })
 
 
-export const { loadRooms } = roomSlice.actions
+export const { loadRooms, loadRoomsByHost } = roomSlice.actions
