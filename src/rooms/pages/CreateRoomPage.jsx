@@ -23,7 +23,7 @@ export const CreateRoomPage = ()=>{
         <Layout>
             <main className="mb-36 mt-28 flex flex-col gap-1" >
                 <StepRegister steps={steps}/>
-                <IndexForm />
+                <IndexForm onChangeStep={onChangeStep} />
             </main>
         </Layout>   
     )

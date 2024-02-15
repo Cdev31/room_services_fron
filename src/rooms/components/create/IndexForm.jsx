@@ -1,16 +1,23 @@
+import { useState } from "react"
 import { InformationRoomForm } from "./InformationRoomForm"
+import { LoadImageRoomForm } from "./LoadImageRoomForm"
 
 
 
-export const IndexForm = ()=>{
+export const IndexForm = ({ onChangeStep })=>{
+
+    const [ step, setStep ] = useState(1)
 
     const onChangePage = ( step )=>{
-        if( step === 1 ){
+        if( step === 1){
             return (
-                <InformationRoomForm/>
+                <InformationRoomForm onNext={ setStep } />
             )
         }
         if( step === 2 ){
+            return (
+                <LoadImageRoomForm/>
+            )
             
         }
         if( step === 3 ){
@@ -21,7 +28,7 @@ export const IndexForm = ()=>{
     return (
         <section className="flex flex-col justify-center">
             {
-                onChangePage(1)
+                onChangePage( step )
             }
         </section>
     )
