@@ -9,7 +9,7 @@ export const NavBar = ()=>{
     const { id } = useSelector( state => state.user )
 
     return (
-        <nav className="flex flex-col z-10 gap-1 fixed w-full border-b-2 border-room-theme/80">
+        <nav className="flex flex-col z-20 bg-white gap-1 fixed w-full border-b-2 border-room-theme/80">
             <ul className="pt-2 flex gap-1 bg-white border-room-theme">
                <NavLink to='/' className="basis-[70%] text-room-theme font-black text-3xl">Room App</NavLink>
                <div className="flex gap-1">

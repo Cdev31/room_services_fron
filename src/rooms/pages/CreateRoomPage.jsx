@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Layout } from "../../layout/Layout"
-import { StepRegister } from "../components/create"
+import { IndexForm, StepRegister } from "../components/create"
 
 
 export const CreateRoomPage = ()=>{
@@ -21,8 +21,9 @@ export const CreateRoomPage = ()=>{
 
     return (
         <Layout>
-            <main className="mb-36 mt-36 flex flex-col" >
+            <main className="mb-36 mt-28 flex flex-col gap-1" >
                 <StepRegister steps={steps}/>
+                <IndexForm />
             </main>
         </Layout>   
     )

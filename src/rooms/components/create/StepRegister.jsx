@@ -5,7 +5,7 @@
 export const StepRegister = ({ steps })=>{
 
     return (
-        <section className="self-center flex flex-row"> 
+        <section className="self-center flex flex-row mt-1 mb-1"> 
             <div className="flex flex-row">
                 <p className={`${ steps['step1'] === true ? "border-green-500 bg-green-500 text-white": " border-black/50 text-black/60" } 
                 font-bold pt-[2px] rounded-[100%] w-8 h-8 text-center border-2`}>1</p>
