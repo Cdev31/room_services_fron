@@ -9,20 +9,23 @@ export const NavBar = ()=>{
     const { id } = useSelector( state => state.user )
 
     return (
-        <nav className="flex flex-col z-20 bg-white gap-1 fixed w-full border-b-2 border-room-theme/80">
-            <ul className="pt-2 flex gap-1 bg-white border-room-theme">
-               <NavLink to='/' className="basis-[70%] text-room-theme font-black text-3xl">Room App</NavLink>
+        <nav className="flex flex-col z-20  gap-1  bg-gradient-to-r from-orange-800 to-orange-700
+        fixed w-full border-b-2 border-orange-800">
+            <ul className="pt-2 flex gap-1 border-room-theme">
+               <NavLink to='/' className="basis-[70%] text-white font-black text-3xl">Room App</NavLink>
                <div className="flex gap-1">
                    {
                     status !== 'authenticated' && (
                         <>
-                            <li className="cursor-pointer font-medium bg-white text-room-theme m-1 p-1 rounded-md  border-room-theme border-2 text-xl
+                            <li className="cursor-pointer font-bold bg-gradient-to-r from-orange-700 to-orange-600
+                             text-white m-1 p-2 rounded-md  border-white border-b-2 text-base sm:text-xl
                                 hover:scale-[1.02] hover:text-white hover:bg-red-400">
                                     <NavLink to='/login'>
                                         Login
                                     </NavLink>
                             </li>
-                            <li className="cursor-pointer font-medium bg-white text-room-theme m-1 p-1 rounded-md border-room-theme border-2 text-xl
+                            <li className="cursor-pointer font-bold bg-gradient-to-r from-orange-700 to-orange-600
+                             text-white m-1 p-2 rounded-md  border-white border-b-2 text-base
                                 hover:scale-[1.02] hover:text-white hover:bg-red-400">
                                     <NavLink to='/singin'>
                                         SignIn
@@ -53,7 +56,7 @@ export const NavBar = ()=>{
                    }
                </div>
             </ul>
-            <div className="flex justify-center gap-2 pb-2 bg-white">
+            {/* <div className="flex justify-center gap-2 pb-2">
                 <div className="bg-room-theme p-1 rounded-md hover:scale-[1.02] cursor-pointer sm:hidden">
                     <Bars3Icon className="h-8 text-white"/>
                  </div>
@@ -65,7 +68,7 @@ export const NavBar = ()=>{
                   </div>
                 </div>
                 <AdjustmentsHorizontalIcon className="hover:scale-[1.02] text-room-theme h-9 border-2 border-room-theme rounded-sm cursor-pointer ml-4"/>
-            </div>
+            </div> */}
         </nav>
     )
 }
