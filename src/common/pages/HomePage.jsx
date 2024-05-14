@@ -9,20 +9,26 @@ import { RoomCard } from "../../rooms/components/Common/RoomCard"
 
 export const HomePage = ()=>{
 
-    const dispatch = useDispatch()
-    const { rooms } = useSelector( state => state.room )
-    const { token, userId, status  } = useSelector( state => state.auth )
+    const rooms = [
+        { _id: 1},
+        { _id: 2},
+        { _id: 3},
+        { _id: 4}
+    ]
+    // const dispatch = useDispatch()
+    // const { rooms } = useSelector( state => state.room )
+    // const { token, userId, status  } = useSelector( state => state.auth )
 
-    useEffect(()=>{
-        dispatch( getRooms() )
-    }, [])
+    // useEffect(()=>{
+    //     dispatch( getRooms() )
+    // }, [])
 
-    useEffect(()=>{
-        if ( status === 'authenticated' ){
-            dispatch( getProfile( token, userId ) )
-        }
-    }, [ status ])
-    console.log(status)
+    // useEffect(()=>{
+    //     if ( status === 'authenticated' ){
+    //         dispatch( getProfile( token, userId ) )
+    //     }
+    // }, [ status ])
+    
     return (
     <Layout>
         <RoomList>
